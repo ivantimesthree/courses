@@ -45,7 +45,6 @@ check_is_user_created() {
 	fi
 }
 
-
 return_tokens() {
 	echo "Username: ${USERNAME} Password: ${PASSWORD} Hostname: $HOSTNAME"
 }
