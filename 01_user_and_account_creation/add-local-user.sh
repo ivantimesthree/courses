@@ -50,3 +50,4 @@ return_tokens() {
 }
 
 main
+exit 0
