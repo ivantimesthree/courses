@@ -24,15 +24,15 @@ main() {
 
 sanity_check_user() {
 	if [[ ${UID} -ne 0 ]]; then
-		echo 'Script must be run as root.'
+		echo 'Script must be run as root.' 1>&2  
 		exit 1
 	fi
 }
 
 sanity_check_params() {
 	if [[ "${COUNT_OF_ARGS}" -lt 1 ]]; then
-		echo "Usage: ${0} USERNAME [COMMENT]"
-		echo 'Create an account on the local system with the name of USERNAME and a comments filled of COMMENT.'
+		echo "Usage: ${0} USERNAME [COMMENT]" 1>&2
+		echo 'Create an account on the local system with the name of USERNAME and a comments filled of COMMENT.' 1>&2
 		exit 1
 	fi
 }
@@ -51,19 +51,19 @@ generate_password() {
 }
 
 create_user() {
-	useradd -c "${COMMENT}" -m ${USERNAME}
-	echo "${PASSWORD}" | passwd --stdin "${USERNAME}"
+	useradd -c "${COMMENT}" -m ${USERNAME} 2&>1 /dev/null
+	echo "${PASSWORD}" | passwd --stdin "${USERNAME}" 2>&1 /dev/null
 }
 
 check_is_user_created_by_status() { 
 	if [[ "${?}" -ne 0 ]]; then
-		echo "The account could not have been created. Exiting..."
+		echo "The account could not have been created. Exiting..." 1>&2
 		exit 1
 	fi
 }
 
 force_password_change_on_first_login() {
-	passwd -e "${USERNAME}"
+	passwd -e "${USERNAME}" 2>&1 /dev/null
 }
 
 return_tokens() {
