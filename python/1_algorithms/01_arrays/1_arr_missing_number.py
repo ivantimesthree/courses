@@ -4,5 +4,9 @@ def missing_number(arr, n):
     return total_sum - arr_sum
 
 
-if __name__ == "__main__":
+def main():
     print(missing_number([1, 2, 3, 4, 5], 6))
+
+
+if __name__ == "__main__":
+    main()

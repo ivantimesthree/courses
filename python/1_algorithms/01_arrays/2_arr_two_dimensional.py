@@ -31,8 +31,12 @@ def linear_search(arr, target):
     return "The element is now found"
 
 
-if __name__ == "__main__":
+def main():
     # access_elements(arr, 1, 1)
     # traverse_array(arr)
     print(linear_search(arr, 6))
     pass
+
+
+if __name__ == "__main__":
+    main()
